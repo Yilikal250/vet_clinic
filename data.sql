@@ -1,1 +1,3 @@
-INSERT INTO animals (id, name, date_of_birth, escape_attempts, neutered,weight_kg) VALUES ('0', 'Agumon', '03 03 2023', '0', 'TRUE', '10.23kg'), ('1', 'Gabumon','11 15 2018','2','true','8kg'), ('2', 'Pikachu','1 1 2021','2','false','15.04kg'), ('3', 'Devimon','5 12 2017','5','true','11kg');
+select * from animals where name LIKE  '%mon';
+SELECT * FROM animals WHERE date_of_birth BETWEEN '#01-01-2016#' AND '#01-01-2019#';
+
