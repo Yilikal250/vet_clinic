@@ -1,4 +1,1 @@
-INSERT INTO animals (id, name, date_of_birth, escape_attempts, neutered,weight_kg) VALUES ('0', 'Agumon', '03 03 2023', '0', 'TRUE', '10.23kg');
-INSERT INTO animals (name,date_of_birth,escape_attempts,neutered,weight_kg) VALUES ('Gabumon','11 15 2018','true','2','8kg');
-INSERT INTO animals (name,date_of_birth,escape_attempts,neutered,weight_kg) VALUES ('Pikachu','1 1 2021','false','1','15.04kg');
-INSERT INTO animals (name,date_of_birth,escape_attempts,neutered,weight_kg) VALUES ('Devimon','5 12 2017','true','5','11kg');
+INSERT INTO animals (id, name, date_of_birth, escape_attempts, neutered,weight_kg) VALUES ('0', 'Agumon', '03 03 2023', '0', 'TRUE', '10.23kg'), ('1', 'Gabumon','11 15 2018','2','true','8kg'), ('2', 'Pikachu','1 1 2021','2','false','15.04kg'), ('3', 'Devimon','5 12 2017','5','true','11kg');
