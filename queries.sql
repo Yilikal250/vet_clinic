@@ -76,5 +76,99 @@ GROUP BY o.full_name
 ORDER BY COUNT(a.name) DESC 
 LIMIT 1;
 
+SELECT vets.name AS "VET NAME", animals.name AS "ANIMAL NAME", visits.date_of_visit AS "DATE OF VISIT" FROM vets
+JOIN visits
+ON vets.id = visits.vet_id
+JOIN animals
+ON animals.id = visits.animal_id
+WHERE vets.name = 'William Tatcher'
+ORDER BY visits.date_of_visit DESC
+LIMIT 1;
+
+SELECT vets.name AS "VET NAME", COUNT(DISTINCT visits.animal_id) AS "NUMBER OF DIFFERENT ANIMALS" FROM vets 
+JOIN visits 
+ON vets.id = visits.vet_id 
+WHERE vets.name = 'Stephanie Mendez' 
+GROUP BY vets.name;
+
+SELECT vets.name AS "VET NAME", species.name AS "SPECIALTIES" FROM vets 
+LEFT JOIN specializations 
+ON vets.id = specializations.vet_id 
+LEFT JOIN species 
+ON specializations.species_id = species.id;
+
+SELECT vets.name AS "VET NAME", animals.name AS "ANIMAL NAME", visits.date_of_visit AS "DATE OF VISIT" FROM vets 
+JOIN visits 
+ON vets.id = visits.vet_id 
+JOIN animals 
+ON visits.animal_id = animals.id 
+WHERE vets.name = 'Stephanie Mendez' AND visits.date_of_visit BETWEEN '2020-04-01' AND '2020-08-30';
+
+SELECT animals.name AS "ANIMAL NAME", COUNT(animals.id) AS "NUMBER OF VISITS TO VET" FROM visits 
+JOIN animals 
+ON visits.animal_id = animals.id 
+GROUP BY animals.name 
+ORDER BY COUNT(animals.id) DESC 
+LIMIT 1;
+
+SELECT vets.name AS "VET NAME", visits.date_of_visit AS "DATE OF VISIT" FROM vets 
+JOIN visits 
+ON vets.id = visits.vet_id 
+WHERE vets.name = 'Maisy Smith' 
+ORDER BY visits.date_of_visit 
+LIMIT 1;
+
+SELECT animals.name AS "NAME", 
+animals.date_of_birth AS "BIRTHDATE", 
+animals.escape_attempts AS "ESCAPE ATTEMPTS", 
+animals.neutered AS "NEUTERED", 
+animals.weight_kg AS "WEIGHT", 
+species.name AS "TYPE", 
+vets.name AS "VET NAME", 
+vets.age AS "VET AGE", 
+vets.date_of_graduation AS "DATE OF GRAD", 
+visits.date_of_visit AS "DATE OF VISIT" FROM visits 
+JOIN animals 
+ON visits.animal_id = animals.id 
+JOIN species 
+ON animals.species_id = species.id 
+JOIN vets 
+ON visits.vet_id = vets.id 
+ORDER BY visits.date_of_visit DESC 
+LIMIT 1;
+
+SELECT animals.name AS "ANIMAL NAME",
+COUNT(visits.animal_id) AS "NUMBER OF VISITS",
+vets.name AS "VET NAME",
+specializations.species_id AS "SPECIALTIES" FROM visits
+JOIN animals
+ON animals.id = visits.animal_id
+FULL JOIN specializations
+ON visits.vet_id = specializations.vet_id
+JOIN vets
+ON visits.vet_id = vets.id
+GROUP BY visits.animal_id, visits.vet_id, animals.name,
+specializations.species_id, vets.name
+ORDER BY COUNT(visits.animal_id) DESC
+LIMIT 1;
+
+SELECT species.name AS "SPECIES TYPE",
+COUNT(visits.animal_id) AS "NUMBER OF VISITS",
+vets.name AS "VET NAME" FROM visits
+JOIN vets
+ON visits.vet_id = vets.id
+JOIN animals
+ON visits.animal_id = animals.id
+JOIN species
+ON animals.species_id = species.id
+WHERE vets.name = 'Maisy Smith'
+GROUP BY vets.name, animals.species_id, species.name
+ORDER BY animals.species_id DESC
+LIMIT 1;
+
+EXPLAIN ANALYZE SELECT * FROM visits WHERE animal_id = 4;
+EXPLAIN ANALYZE SELECT * FROM visits WHERE vet_id = 2;
+EXPLAIN ANALYZE SELECT * FROM owners WHERE email = 'owner_18327@mail.com';
+
 
 
