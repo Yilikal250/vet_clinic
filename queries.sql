@@ -33,6 +33,13 @@ UPDATE animals SET weight_kg = weight_kg * -1 WHERE weight_kg < 0;
 COMMIT;
 SELECT * FROM animals;
 
+SELECT COUNT(*) AS "TOTAL ANIMALS" FROM animals;
+SELECT COUNT(*) AS "ANIMALS WITH 0 ESCAPE COUNT" FROM animals WHERE escape_attempts = 0;
+SELECT AVG(weight_kg) AS "AVERAGE WEIGHT OF ANIMALS" FROM animals;
+SELECT neutered, AVG(escape_attempts) AS "AVERAGE ESCAPE ATTEMPTS OF ANIMALS" FROM animals GROUP BY neutered ORDER BY AVG(escape_attempts) DESC LIMIT 1;
+SELECT species, MIN(weight_kg) AS "MIN WEIGHT", MAX(weight_kg) AS "MAX WEIGHT" FROM animals GROUP BY species;
+SELECT species, AVG(escape_attempts) AS "AVERAGE ESCAPE ATTEMPTS OF ANIMALS" FROM animals WHERE date_of_birth BETWEEN '1990-01-01' AND '2000-01-01' GROUP BY species;
+
 SELECT a.name AS "ANIMAL NAME", o.full_name AS "BELONG TO" FROM animals AS a 
 JOIN owners AS o 
 ON a.owner_id = o.id 
@@ -69,10 +76,5 @@ GROUP BY o.full_name
 ORDER BY COUNT(a.name) DESC 
 LIMIT 1;
 
-SELECT COUNT(*) AS "TOTAL ANIMALS" FROM animals;
-SELECT COUNT(*) AS "ANIMALS WITH 0 ESCAPE COUNT" FROM animals WHERE escape_attempts = 0;
-SELECT AVG(weight_kg) AS "AVERAGE WEIGHT OF ANIMALS" FROM animals;
-SELECT neutered, AVG(escape_attempts) AS "AVERAGE ESCAPE ATTEMPTS OF ANIMALS" FROM animals GROUP BY neutered ORDER BY AVG(escape_attempts) DESC LIMIT 1;
-SELECT species, MIN(weight_kg) AS "MIN WEIGHT", MAX(weight_kg) AS "MAX WEIGHT" FROM animals GROUP BY species;
-SELECT species, AVG(escape_attempts) AS "AVERAGE ESCAPE ATTEMPTS OF ANIMALS" FROM animals WHERE date_of_birth BETWEEN '1990-01-01' AND '2000-01-01' GROUP BY species;
+
 
